@@ -17,11 +17,11 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const StartScreen = () => {
-  const [degree, setDegree] = useState('84');
+  const [degree, setDegree] = useState('0');
   const [degreeSign, setDegreeSign] = useState('o');
   const [weatherType, setWeatherType] = useState('Mostly Cloudy');
   const [devName, setDevName] = useState('Hexa-Devs');
-  const [place, setPlace] = useState('');
+  const [place, setPlace] = useState('Loading');
   const [country, setCountry] = useState('India');
   const [loading, setLoading] = useState(true);
   const [iconWeather, setIconWeather] = useState(
@@ -60,7 +60,7 @@ const StartScreen = () => {
         setPlace(weatherdata.location.name);
         setDegree(Math.floor(weatherdata.current.temp_c).toString());
         console.log(degree);
-        // setWeatherType(weatherdata.current.condition.text);
+        setWeatherType(weatherdata.current.condition.text);
         setIconWeather(`http:` + weatherdata.current.condition.icon);
         setDate(weatherdata.location.localtime);
         setWind(
@@ -71,7 +71,7 @@ const StartScreen = () => {
         );
         setTimeout(function () {
           setLoading(false);
-        }, 5000);
+        }, 1000);
       });
   }
 
@@ -83,7 +83,7 @@ const StartScreen = () => {
         <ViroFlexView
           height={1000}
           width={1000}
-          position={[0, 0, -4]}
+          position={[0, 0, -5]}
           transformBehaviors={['billboard']}
           backgroundColor={'#000000'}
           style={styles.splashScreenbox}>
@@ -92,7 +92,7 @@ const StartScreen = () => {
             width={1}
             loop={true}
             rotation={[0, 0, 0]}
-            position={[0, 0, -5]}
+            position={[0, 0, -1]}
             source={require('./assets/spinner.gif')}
           />
         </ViroFlexView>
@@ -139,7 +139,10 @@ const StartScreen = () => {
           <ViroText
             text={place}
             scale={[1, 1, 1]}
-            position={[0.5, 0.9, -3.4]}
+            position={[1.55, 0.9, -3.4]}
+            height={1}
+            width={2}
+            maxLines={1}
             outerStroke={{type: 'Outline', width: 1, color: '#000000'}}
             style={styles.dateStyle}
           />
@@ -185,10 +188,10 @@ const StartScreen = () => {
             }}
           />
           <ViroImage
-            height={0.2}
-            width={0.2}
-            position={[1.14, 1, -3]}
-            source={require('./assets/location.png')}
+            height={0.3}
+            width={0.3}
+            position={[0.3, 1.12, -3]}
+            source={require('./assets/lfinal.png')}
           />
 
           <ViroImage
