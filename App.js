@@ -59,7 +59,6 @@ const StartScreen = () => {
         weatherdata = data;
         setPlace(weatherdata.location.name);
         setDegree(Math.floor(weatherdata.current.temp_c).toString());
-        console.log(degree);
         setWeatherType(weatherdata.current.condition.text);
         setIconWeather(`http:` + weatherdata.current.condition.icon);
         setDate(weatherdata.location.localtime);
@@ -71,7 +70,7 @@ const StartScreen = () => {
         );
         setTimeout(function () {
           setLoading(false);
-        }, 1000);
+        }, 3000);
       });
   }
 
