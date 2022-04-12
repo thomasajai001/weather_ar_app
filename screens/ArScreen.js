@@ -11,12 +11,28 @@ import {
   ViroAnimatedImage,
   ViroImage,
   ViroFlexView,
+  ViroSphere,
+  ViroMaterials,
+  ViroAnimations,
 } from '@viro-community/react-viro';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const StartScreen = () => {
+  ViroMaterials.createMaterials({
+    earth: {
+      diffuseTexture: require('../assets/earthmap1k1.jpg'),
+    },
+  });
+  ViroAnimations.registerAnimations({
+    rotate: {
+      duration: 2500,
+      properties: {
+        rotateY: '+=90',
+      },
+    },
+  });
   const [degree, setDegree] = useState('0');
   const [degreeSign, setDegreeSign] = useState('o');
   const [weatherType, setWeatherType] = useState('Mostly Cloudy');
@@ -191,7 +207,7 @@ const StartScreen = () => {
           <ViroImage
             height={0.3}
             width={0.3}
-            position={[0.3, 1.12, -3]}
+            position={[0.3, 1.02, -3]}
             source={require('../assets/location.png')}
           />
 
@@ -199,6 +215,7 @@ const StartScreen = () => {
             height={0.2}
             width={0.2}
             position={[0.6, -1.95, -3.4]}
+            // position={[5, 1.7, 0]}
             source={require('../assets/wind.png')}
           />
           <ViroImage
@@ -207,6 +224,18 @@ const StartScreen = () => {
             position={[0.6, -2.25, -3.4]}
             source={require('../assets/humidity.png')}
           />
+          <ViroSphere
+            radius={0.5}
+            position={[-1.8, 1.7, -5]}
+            materials={['earth']}
+            animation={{name: 'rotate', loop: true, run: true}}
+          />
+          {/* <ViroSphere
+            radius={0.5}
+            position={[5, 1.7, 0]}
+            materials={['earth']}
+            animation={{name: 'rotate', loop: true, run: true}}
+          /> */}
         </ViroFlexView>
       )}
     </ViroARScene>
